@@ -4,6 +4,9 @@ class ItemTest < ActiveSupport::TestCase
   describe "valid operation" do
     let(:user) { User.create!(email: 'test@email.com', password: 'secret' ) }
     let(:item) { user.items.create(title: "todo item 1" ) }
+    it "works" do
+      item.must_be_instance_of Item
+    end
     it "must be valid" do
       item.user_id.must_equal user.id
       item.errors.count.must_equal 0
