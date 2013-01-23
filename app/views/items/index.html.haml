@@ -1,7 +1,7 @@
 - model_class = Item
 .page-header
   %h1=t '.title', default: model_class.model_name.human.pluralize
-%ul{id: "items"}
+%ul{id: "items", "data-update-url" => sort_items_url}
   = render @items
 
 = link_to t('.new', default: t("helpers.links.new")), new_item_path, class: 'btn btn-primary', remote: true

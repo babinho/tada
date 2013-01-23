@@ -33,7 +33,7 @@ class ItemTest < ActiveSupport::TestCase
       user.items.build(title: nil).valid?.wont_equal true
     end
     it "should not be valid without a user" do
-      FactoyGirl.create(:item).valid?.wont_equal true
+      FactoryGirl.build(:item).errors.wont_be_nil
     end
   end
 end

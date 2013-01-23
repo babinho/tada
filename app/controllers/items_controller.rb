@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
-  before_filter :find_item, except: [:index, :new, :create]
+  before_filter :find_item, except: [:index, :new, :create, :sort]
   # GET /items
   # GET /items.json
   def index
-    @items = current_user.items.sort {|x| x.position }
+    @items = current_user.items.order("position")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -82,6 +82,14 @@ class ItemsController < ApplicationController
       format.js
     end
   end
+
+  def sort
+    params[:item].each_with_index do |id,index|
+      Item.update_all({position: index+1},{id: id})
+    end
+    render nothing: true
+  end
+
   private
   def find_item
     @item = current_user.items.find(params[:id])
