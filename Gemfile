@@ -22,6 +22,7 @@ end
 
 gem 'jquery-rails'
 gem 'haml'
+gem "haml-rails"
 gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'simple_form'
@@ -43,6 +44,7 @@ gem 'acts_as_list'
 group :development, :test do
   gem 'debugger'
   gem 'minitest-spec-rails'
+  gem 'factory_girl_rails'
   gem 'spork'   # Spork caches rails so tests run fast.
   gem 'autotest-standalone' # The file '.autotest' makes sure the tests are run via test server (spork).
   gem 'autotest-rails-pure' # -pure gives us autotest without ZenTest gem.

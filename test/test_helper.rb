@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spork'
+require 'factory_girl'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -24,11 +25,5 @@ require 'minitest/autorun'
 require 'minitest/pride'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
-  fixtures :all
-
   # Add more helper methods to be used by all tests here...
 end
