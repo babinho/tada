@@ -1,6 +1,6 @@
 - model_class = Item
 .page-header
-  %h1=t '.title', default: model_class.model_name.human.pluralize
+  %h1 SuperCool Todo List On Fire
 %ul{id: "items", "data-update-url" => sort_items_url}
   = render @items
 
