@@ -1,8 +1,9 @@
 require 'test_helper'
+require 'factory_girl'
 
 class ItemTest < ActiveSupport::TestCase
   describe "valid operation" do
-    let(:user) { User.create!(email: 'test@email.com', password: 'secret' ) }
+    let(:user) { FactoryGirl.create(:user) }
     let(:item) { user.items.create(title: "todo item 1" ) }
     it "works" do
       item.must_be_instance_of Item
@@ -27,6 +28,12 @@ class ItemTest < ActiveSupport::TestCase
       it "must be completed" do
         item.completed?.must_equal true
       end
+    end
+    it "should not be valid without a title" do
+      user.items.build(title: nil).valid?.wont_equal true
+    end
+    it "should not be valid without a user" do
+      FactoyGirl.create(:item).valid?.wont_equal true
     end
   end
 end

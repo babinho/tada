@@ -1,0 +1,2 @@
+$("li#item_form").fadeOut(2000).remove();
+$("ul#items").prepend('<%= j(render "item", item: @item) %>');

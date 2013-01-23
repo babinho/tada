@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_user_logged_in!
   helper_method :current_user
 
-  private
+  protected
   def check_user_logged_in!
     authenticate_user!
   end

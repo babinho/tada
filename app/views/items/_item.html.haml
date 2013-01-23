@@ -1,0 +1,4 @@
+= content_tag_for :li, item, class: "well" do
+  = item.title
+  = link_to t('.delete'), item_path(item),method: :delete, class: "btn btn-danger pull-right",confirm: t('.confirm', default: "Are you sure?"), remote: true
+  = link_to t('.edit'), edit_item_path(item), class: "btn btn-warning pull-right", remote: true

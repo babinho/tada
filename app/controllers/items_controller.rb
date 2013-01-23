@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
+  before_filter :find_item, except: [:index, :new, :create]
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all.sort {|x| x.priority }
+    @items = current_user.items.sort {|x| x.position }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,6 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    @item = Item.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,17 +24,17 @@ class ItemsController < ApplicationController
   # GET /items/new
   # GET /items/new.json
   def new
-    @item = Item.new
+    @item = current_user.items.build
 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @item }
+      format.js
     end
   end
 
   # GET /items/1/edit
   def edit
-    @item = current_user.items.find(params[:id])
   end
 
   # POST /items
@@ -46,9 +46,11 @@ class ItemsController < ApplicationController
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render json: @item, status: :created, location: @item }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -56,12 +58,12 @@ class ItemsController < ApplicationController
   # PUT /items/1
   # PUT /items/1.json
   def update
-    @item = current_user.items.find(params[:id])
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @item.errors, status: :unprocessable_entity }
@@ -72,12 +74,16 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    @item = Item.find(params[:id])
     @item.destroy
 
     respond_to do |format|
       format.html { redirect_to items_url }
       format.json { head :no_content }
+      format.js
     end
+  end
+  private
+  def find_item
+    @item = current_user.items.find(params[:id])
   end
 end
