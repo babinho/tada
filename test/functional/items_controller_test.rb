@@ -1,9 +1,11 @@
 require 'test_helper'
 
 class ItemsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   setup do
-    @user = FactoryGirl.create(:user)
-    @item = @user.items.create(FactoryGirl.attributes_for(:item))
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in FactoryGirl.create(:user)
+    @item = @controller.current_user.items.create(FactoryGirl.attributes_for(:item))
   end
 
   test "should get index" do
@@ -18,7 +20,7 @@ class ItemsControllerTest < ActionController::TestCase
 
   test "should create item" do
     assert_difference('Item.count') do
-      post :create, item: FactoryGirl.attributes_for(:item, title: "new title", user_id: @user.id)
+      post :create, item: FactoryGirl.attributes_for(:item, title: "new title")
     end
 
     assert_redirected_to item_path(assigns(:item))

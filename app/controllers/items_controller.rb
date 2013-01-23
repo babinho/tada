@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.all.sort {|x| x.priority }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -34,13 +34,13 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
-    @item = Item.find(params[:id])
+    @item = current_user.items.find(params[:id])
   end
 
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(params[:item])
+    @item = current_user.items.build(params[:item])
 
     respond_to do |format|
       if @item.save
@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
   # PUT /items/1
   # PUT /items/1.json
   def update
-    @item = Item.find(params[:id])
+    @item = current_user.items.find(params[:id])
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
