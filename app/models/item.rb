@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
-  attr_accessible :done, :priority, :title
+  acts_as_list
+  attr_accessible :title, :position
   validates :user_id, presence: true
   def complete!
     self.done = true

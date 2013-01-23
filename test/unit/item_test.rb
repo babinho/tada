@@ -17,6 +17,9 @@ class ItemTest < ActiveSupport::TestCase
     it "must be able to complete" do
       item.must_respond_to :complete!
     end
+    it "must have a position attribute" do
+      item.must_respond_to :position
+    end
     describe "completion" do
       before do
         item.complete!

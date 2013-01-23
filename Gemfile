@@ -25,6 +25,7 @@ gem 'haml'
 gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'simple_form'
+gem 'acts_as_list'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

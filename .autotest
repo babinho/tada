@@ -1,4 +1,5 @@
 require 'autotest/fsevent'
+require 'autotest/growl'
 
 class Autotest
   # run tests over drb server (spork)
