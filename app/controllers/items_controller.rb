@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = current_user.items.order("position")
+    @items = current_user.items.order(:position)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,6 +44,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
+        @item.move_to_top
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render json: @item, status: :created, location: @item }
         format.js
