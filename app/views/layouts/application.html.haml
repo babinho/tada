@@ -25,7 +25,7 @@
           .nav-collapse.collapse
             %ul.nav
               - if current_user
-                %li= link_to "Hello #{current_user.email}", "#"
+                %li= link_to "#{current_user.email} Profile", edit_user_registration_path
                 %li= link_to t('.logout', default: 'Logout'), destroy_user_session_path, method: :delete
 
     .container-fluid
