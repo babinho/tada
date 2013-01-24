@@ -12,3 +12,6 @@ development: &defaults
 test:
   <<: *defaults
   database: tada_test
+
+production:
+  <<: *defaults
