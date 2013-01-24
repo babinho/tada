@@ -14,4 +14,4 @@ test:
   database: tada_test
 
 production:
-  <<: *defaults
+  database: tadaonfire
