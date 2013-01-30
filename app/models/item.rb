@@ -3,6 +3,7 @@ class Item < ActiveRecord::Base
   attr_accessible :title, :position
   validates :user_id, presence: true
   validates :title, presence: true
+  after_create :move_to_top
   def complete!
     self.done = true
   end
