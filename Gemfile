@@ -36,14 +36,14 @@ gem 'acts_as_list'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'thin'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
 
 # To use debugger
 group :development, :test do
-  gem 'debugger'
+#  gem 'debugger'
   gem 'minitest-spec-rails'
   gem 'factory_girl_rails'
   gem 'spork'   # Spork caches rails so tests run fast.
